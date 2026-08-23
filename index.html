@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Surya's Resume</title>
+  <title id="pageTitle">SURYA M R | Vehicle Testing Group - R&D</title>
+  
+  <!-- SEO & Social Sharing Preview Meta -->
+  <meta name="description" content="Portfolio & Resume of Surya M R - R&D Engineer specializing in Vehicle Testing, Rig Simulation, and Quality Engineering.">
+  <meta property="og:title" content="SURYA M R | Vehicle Testing Group - R&D">
+  <meta property="og:description" content="Explore Surya's experience in vehicle durability, servo-hydraulic rig simulation, and quality engineering.">
+  <meta property="og:type" content="website">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -123,46 +130,6 @@
       gap: 0.75rem;
       margin-top: 1.25rem;
       flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #0a66c2;
-      color: #ffffff;
-      border: none;
-      padding: 0.55rem 1.25rem;
-      border-radius: 24px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      text-decoration: none;
-      transition: background 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      background: #004182;
-    }
-
-    .btn-secondary {
-      background: #eff6ff;
-      color: #0a66c2;
-      border: 1.5px solid #0a66c2;
-      padding: 0.55rem 1.25rem;
-      border-radius: 24px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      text-decoration: none;
-      transition: background 0.2s ease;
-    }
-
-    .btn-secondary:hover {
-      background: #dbeafe;
     }
 
     .btn-download-cv {
@@ -386,10 +353,6 @@
       box-shadow: 0 10px 20px -8px rgba(10, 102, 194, 0.2);
     }
 
-    .phone-wrapper:hover {
-      transform: none;
-    }
-
     .contact-app-icon {
       width: 48px;
       height: 48px;
@@ -404,6 +367,7 @@
     }
 
     .app-linkedin { background: #0a66c2; }
+    .app-github { background: #24292e; }
     .app-gmail { background: #ea4335; }
     .app-phone { background: #10b981; }
 
@@ -417,63 +381,129 @@
       color: #0a66c2;
     }
 
-    /* Popover */
-    .phone-wrapper {
-      position: relative;
-    }
-
-    .contact-choice-popover {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      padding: 0.5rem;
-      z-index: 10;
-      min-width: 180px;
-    }
-
-    .contact-choice-popover.open {
-      display: block;
-    }
-
-    .choice-option {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.6rem 0.75rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #191919;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .choice-option:hover {
-      background: #f3f4f6;
-    }
-
-    .choice-option i {
-      width: 20px;
-      text-align: center;
-    }
-
-    .choice-option.call-option i { color: #10b981; }
-    .choice-option.whatsapp-option i { color: #25d366; }
-
-    .popover-backdrop {
+    /* Universal Modal Styles */
+    .center-modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      z-index: 9;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
     }
 
-    .popover-backdrop.open {
-      display: block;
+    .center-modal-overlay.open {
+      display: flex;
+    }
+
+    .center-modal {
+      background: #ffffff;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 420px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      text-align: center;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .modal-header h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .modal-header p {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+      line-height: 1.45;
+    }
+
+    /* Communication Options in Center Dialog */
+    .comm-options-list {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .comm-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      border: 1.5px solid transparent;
+    }
+
+    .comm-action-btn .btn-label-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .comm-btn-call {
+      background: #ecfdf5;
+      color: #047857;
+      border-color: #a7f3d0;
+    }
+    .comm-btn-call:hover {
+      background: #10b981;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .comm-btn-whatsapp {
+      background: #f0fdf4;
+      color: #15803d;
+      border-color: #bbf7d0;
+    }
+    .comm-btn-whatsapp:hover {
+      background: #25d366;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
     }
 
     /* Overview Grid */
@@ -507,90 +537,19 @@
       color: #191919;
     }
 
-    /* Lead Tracking Modal */
-    .tracker-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .tracker-modal-overlay.open {
-      display: flex;
-    }
-
-    .tracker-modal {
-      background: #ffffff;
-      border-radius: 18px;
-      width: 100%;
-      max-width: 440px;
-      padding: 2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      position: relative;
-      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes modalPop {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .tracker-close-btn {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      background: #f1f5f9;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-size: 0.9rem;
-      color: #64748b;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .tracker-close-btn:hover {
-      background: #e2e8f0;
-      color: #0f172a;
-    }
-
-    .tracker-modal-header h3 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .tracker-modal-header p {
-      font-size: 0.88rem;
-      color: #64748b;
-      margin-top: 0.35rem;
-      line-height: 1.45;
-    }
-
+    /* Lead Form inside Download Modal */
     .tracker-form {
       margin-top: 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
+      text-align: left;
     }
 
     .tracker-input-group {
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
-      text-align: left;
     }
 
     .tracker-input-group label {
@@ -666,7 +625,7 @@
         margin: 0 !important;
       }
 
-      .linkedin-card, .popover-backdrop, #phoneChoicePopover, .tracker-modal-overlay {
+      .linkedin-card, .center-modal-overlay {
         display: none !important;
       }
 
@@ -713,8 +672,14 @@
         color: #334155;
       }
 
+      .pro-cv-contact-row a {
+        color: #334155;
+        text-decoration: none;
+      }
+
       .pro-cv-section {
         margin-bottom: 12px;
+        break-inside: avoid;
       }
 
       .pro-cv-heading {
@@ -736,6 +701,7 @@
 
       .pro-cv-job {
         margin-bottom: 8px;
+        break-inside: avoid;
       }
 
       .pro-cv-job-header {
@@ -798,13 +764,12 @@
       .headline { font-size: 0.92rem; }
       .meta-details { font-size: 0.82rem; gap: 0.6rem; }
       .action-row { flex-direction: column; }
-      .btn-primary, .btn-secondary, .btn-download-cv { width: 100%; justify-content: center; }
+      .btn-download-cv { width: 100%; justify-content: center; }
       nav { padding: 0.75rem 1rem; }
       .tab-btn { padding: 0.55rem 1rem; font-size: 0.85rem; }
       .tab-container { padding: 1.25rem; }
       .overview-grid { grid-template-columns: 1fr; }
       .contact-links-grid { grid-template-columns: 1fr; }
-      .contact-choice-popover { left: auto; right: 0; }
     }
   </style>
 </head>
@@ -834,12 +799,6 @@
         </div>
 
         <div class="action-row">
-          <button class="btn-primary" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[5])">
-            <i class="fa-solid fa-paper-plane"></i> Contact Info
-          </button>
-          <button class="btn-secondary" onclick="switchTab('experience', document.querySelectorAll('.tab-btn')[2])">
-            <i class="fa-solid fa-briefcase"></i> View Experience
-          </button>
           <button class="btn-download-cv" onclick="openDownloadTrackerModal()">
             <i class="fa-solid fa-file-arrow-down"></i> Download CV
           </button>
@@ -848,19 +807,19 @@
     </div>
 
     <!-- Capsule Pill Tab Navigation -->
-    <nav>
-      <button class="tab-btn active" onclick="switchTab('profile', this)">🏠 Profile Home</button>
-      <button class="tab-btn" onclick="switchTab('summary', this)">📝 Summary</button>
-      <button class="tab-btn" onclick="switchTab('experience', this)">💼 Experience</button>
-      <button class="tab-btn" onclick="switchTab('skills', this)">⚡ Skills</button>
-      <button class="tab-btn" onclick="switchTab('education', this)">🎓 Education</button>
-      <button class="tab-btn" onclick="switchTab('contact', this)">📬 Contact</button>
+    <nav id="profileTabsNav">
+      <button class="tab-btn active" data-tab="profile" onclick="switchTab('profile', this)">🏠 Profile</button>
+      <button class="tab-btn" data-tab="summary" onclick="switchTab('summary', this)">📝 Summary</button>
+      <button class="tab-btn" data-tab="experience" onclick="switchTab('experience', this)">💼 Experience</button>
+      <button class="tab-btn" data-tab="skills" onclick="switchTab('skills', this)">⚡ Skills</button>
+      <button class="tab-btn" data-tab="education" onclick="switchTab('education', this)">🎓 Education</button>
+      <button class="tab-btn" data-tab="contact" onclick="switchTab('contact', this)">📬 Contact</button>
     </nav>
 
     <!-- Tab Contents -->
     <div class="tab-container">
 
-      <!-- 1. Profile Home Tab -->
+      <!-- 1. Profile Tab -->
       <div id="tab-profile" class="tab-pane active">
         <div class="section-heading">📌 Professional Snapshot</div>
         <p style="color: #5e5e5e; line-height: 1.6;">
@@ -870,11 +829,11 @@
         <div class="overview-grid">
           <div class="overview-box">
             <h4>Current Role</h4>
-            <p>R&D Engineer (Testing)</p>
+            <p>Durablity testing (R&D)</p>
           </div>
           <div class="overview-box" style="border-top-color: #6b21a8;">
-            <h4>Core Facility</h4>
-            <p>NATRAX & Lab Rig Simulation</p>
+            <h4>Core Focus</h4>
+            <p>Field Validation & Root Cause</p>
           </div>
           <div class="overview-box" style="border-top-color: #0f766e;">
             <h4>Company</h4>
@@ -996,8 +955,10 @@
         <div class="section-heading">📬 Contact & Connect</div>
         <div class="contact-links-grid">
 
+          <!-- LinkedIn Link -->
           <a href="https://www.linkedin.com/in/suryamr23" 
-             target="_blank" rel="noopener noreferrer" 
+             target="_blank" 
+             rel="noopener noreferrer" 
              class="contact-link-card">
             <div class="contact-app-icon app-linkedin">
               <i class="fa-brands fa-linkedin-in"></i>
@@ -1005,29 +966,31 @@
             <span class="contact-app-name">LinkedIn</span>
           </a>
 
-          <a href="mailto:suryamr023@gmail.com" 
-             onclick="handleSmartMail('suryamr023@gmail.com', event)" 
+          <!-- GitHub Link -->
+          <a href="https://github.com/suryamr023/" 
+             target="_blank" 
+             rel="noopener noreferrer" 
              class="contact-link-card">
+            <div class="contact-app-icon app-github">
+              <i class="fa-brands fa-github"></i>
+            </div>
+            <span class="contact-app-name">GitHub</span>
+          </a>
+
+          <!-- Email Direct Auto-Handler -->
+          <div class="contact-link-card" onclick="handleAutoEmail('suryamr023@gmail.com')">
             <div class="contact-app-icon app-gmail">
               <i class="fa-solid fa-envelope"></i>
             </div>
-            <span class="contact-app-name">Email</span>
-          </a>
+            <span class="contact-app-name">Gmail</span>
+          </div>
 
-          <div class="contact-link-card phone-wrapper" onclick="togglePhoneChoice(event)">
+          <!-- Phone Modal Trigger Button -->
+          <div class="contact-link-card" onclick="openPhoneModal()">
             <div class="contact-app-icon app-phone">
               <i class="fa-solid fa-phone"></i>
             </div>
             <span class="contact-app-name">Phone</span>
-
-            <div class="contact-choice-popover" id="phoneChoicePopover">
-              <a href="tel:+917603812426" class="choice-option call-option" onclick="closePhoneChoice()">
-                <i class="fa-solid fa-phone"></i> Call
-              </a>
-              <a href="https://wa.me/917603812426" target="_blank" rel="noopener noreferrer" class="choice-option whatsapp-option" onclick="closePhoneChoice()">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </a>
-            </div>
           </div>
 
         </div>
@@ -1043,15 +1006,47 @@
   </div>
 
   <!-- ===================================================
+       CENTER DIALOG: CALL OR WHATSAPP
+       =================================================== -->
+  <div class="center-modal-overlay" id="phoneModalOverlay" onclick="closePhoneModal(event)">
+    <div class="center-modal" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closePhoneModal()">✕</button>
+
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-phone-volume" style="color: #10b981;"></i> Connect</h3>
+        <p>Choose your preferred communication method:</p>
+      </div>
+
+      <div class="comm-options-list">
+        <a href="tel:+917603812426" class="comm-action-btn comm-btn-call" onclick="closePhoneModal()">
+          <div class="btn-label-group">
+            <i class="fa-solid fa-phone"></i>
+            <span>Phone Call</span>
+          </div>
+          <span style="font-size: 0.85rem; font-weight: 700;">Open App ➔</span>
+        </a>
+
+        <a href="https://wa.me/917603812426" target="_blank" rel="noopener noreferrer" class="comm-action-btn comm-btn-whatsapp" onclick="closePhoneModal()">
+          <div class="btn-label-group">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i>
+            <span>WhatsApp</span>
+          </div>
+          <span style="font-size: 0.85rem; font-weight: 700;">Open Chat ➔</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================
        CV DOWNLOAD TRACKER MODAL POPUP
        =================================================== -->
-  <div class="tracker-modal-overlay" id="downloadTrackerModal">
-    <div class="tracker-modal">
-      <button class="tracker-close-btn" onclick="closeDownloadTrackerModal()">✕</button>
+  <div class="center-modal-overlay" id="downloadTrackerModal" onclick="closeDownloadTrackerModal(event)">
+    <div class="center-modal" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeDownloadTrackerModal()">✕</button>
 
-      <div class="tracker-modal-header">
+      <div class="modal-header">
         <h3><i class="fa-solid fa-download" style="color: #0a66c2;"></i> Download Full CV</h3>
-        <p>Please enter your details to download Surya's professional engineering resume.</p>
+        <p>Please enter your details to download Surya's resume.</p>
       </div>
 
       <form class="tracker-form" id="cvLeadForm" onsubmit="handleLeadSubmit(event)">
@@ -1086,9 +1081,10 @@
       <div class="pro-cv-role">R&D Engineer – Vehicle Testing Group</div>
       <div class="pro-cv-contact-row">
         <span>📍 Hosur / Erode, Tamil Nadu, India</span>
-        <span>✉️ suryamr023@gmail.com</span>
-        <span>📞 +91 76038 12426</span>
-        <span>🔗 linkedin.com/in/suryamr23</span>
+        <a href="mailto:suryamr023@gmail.com">✉️ suryamr023@gmail.com</a>
+        <a href="tel:+917603812426">📞 +91 76038 12426</a>
+        <a href="https://www.linkedin.com/in/suryamr23" target="_blank" rel="noopener noreferrer">🔗 linkedin.com/in/suryamr23</a>
+        <a href="https://github.com/suryamr023/" target="_blank" rel="noopener noreferrer">🐙 github.com/suryamr023</a>
       </div>
     </div>
 
@@ -1173,18 +1169,55 @@
     </div>
   </div>
 
-  <div class="popover-backdrop" id="popoverBackdrop" onclick="closePhoneChoice()"></div>
-
   <script>
+    /* Direct Auto Email Handler */
+    function handleAutoEmail(emailAddress) {
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                    || (navigator.maxTouchPoints > 1 && window.innerWidth <= 1024);
+
+      if (isMobile) {
+        window.location.href = `mailto:${emailAddress}`;
+      } else {
+        const mailtoLink = `mailto:${emailAddress}`;
+        const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}`;
+
+        // Trigger default desktop email client
+        window.location.href = mailtoLink;
+
+        // Fallback: If page remains focused, open Gmail Web Composer
+        const checkTime = Date.now();
+        setTimeout(() => {
+          if (Date.now() - checkTime < 1800 && document.hasFocus()) {
+            window.open(gmailWebUrl, '_blank', 'noopener,noreferrer');
+          }
+        }, 1200);
+      }
+    }
+
+    /* Phone / WhatsApp Dialog Controls */
+    function openPhoneModal() {
+      document.getElementById('phoneModalOverlay').classList.add('open');
+    }
+
+    function closePhoneModal(event) {
+      if (event && event.target !== document.getElementById('phoneModalOverlay') && !event.target.classList.contains('modal-close-btn') && !event.target.closest('.comm-action-btn')) {
+        return;
+      }
+      document.getElementById('phoneModalOverlay').classList.remove('open');
+    }
+
+    /* CV Download Lead Tracker Controls */
     function openDownloadTrackerModal() {
       document.getElementById('downloadTrackerModal').classList.add('open');
     }
 
-    function closeDownloadTrackerModal() {
+    function closeDownloadTrackerModal(event) {
+      if (event && event.target !== document.getElementById('downloadTrackerModal') && !event.target.classList.contains('modal-close-btn')) {
+        return;
+      }
       document.getElementById('downloadTrackerModal').classList.remove('open');
     }
 
-    // Handles form submission with Formspree endpoint and triggers print/save as Surya's Resume.pdf
     async function handleLeadSubmit(event) {
       event.preventDefault();
       const btn = document.getElementById('submitBtn');
@@ -1204,12 +1237,16 @@
         _subject: `New Resume Download Report: ${leadName}`
       };
 
-      // 1. Local backup logging in localStorage
-      const existingDownloads = JSON.parse(localStorage.getItem('cv_downloads') || '[]');
-      existingDownloads.push(payload);
-      localStorage.setItem('cv_downloads', JSON.stringify(existingDownloads));
+      // 1. Local backup
+      try {
+        const existingDownloads = JSON.parse(localStorage.getItem('cv_downloads') || '[]');
+        existingDownloads.push(payload);
+        localStorage.setItem('cv_downloads', JSON.stringify(existingDownloads));
+      } catch (e) {
+        console.warn('LocalStorage unavailable.');
+      }
 
-      // 2. Send report to Formspree endpoint
+      // 2. Send to Formspree endpoint
       try {
         await fetch('https://formspree.io/f/xbgrbvej', {
           method: 'POST',
@@ -1220,55 +1257,27 @@
           body: JSON.stringify(payload)
         });
       } catch (err) {
-        console.log('Report saved locally.');
-      }
+        console.log('Report logged locally.');
+      } finally {
+        document.getElementById('downloadTrackerModal').classList.remove('open');
+        btn.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i> Continue to Download';
+        btn.disabled = false;
+        document.getElementById('cvLeadForm').reset();
 
-      // Close modal and initiate download
-      closeDownloadTrackerModal();
-      btn.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i> Continue to Download';
-      btn.disabled = false;
-      document.getElementById('cvLeadForm').reset();
+        // Trigger print dialog
+        const defaultTitle = document.title;
+        document.title = "Surya_Resume_R&D";
 
-      // Ensure the browser default file save name is set to "Surya's Resume"
-      document.title = "Surya's Resume";
-
-      setTimeout(() => {
-        window.print();
         setTimeout(() => {
-          document.title = "SURYA M R | Vehicle Testing Group - R&D";
-        }, 1000);
-      }, 300);
-    }
-
-    function handleSmartMail(emailAddress, event) {
-      if (event) {
-        event.preventDefault();
-      }
-
-      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-                    || (navigator.maxTouchPoints > 1 && window.innerWidth <= 1024);
-
-      if (isMobile) {
-        window.location.href = 'mailto:' + emailAddress;
-      } else {
-        const webGmailUrl = 'https://mail.google.com/mail/u/0/?fs=1&to=' + encodeURIComponent(emailAddress) + '&tf=cm';
-        window.open(webGmailUrl, '_blank', 'noopener,noreferrer');
+          window.print();
+          setTimeout(() => {
+            document.title = defaultTitle;
+          }, 1000);
+        }, 300);
       }
     }
 
-    function togglePhoneChoice(event) {
-      event.stopPropagation();
-      const popover = document.getElementById('phoneChoicePopover');
-      const backdrop = document.getElementById('popoverBackdrop');
-      popover.classList.toggle('open');
-      backdrop.classList.toggle('open');
-    }
-
-    function closePhoneChoice() {
-      document.getElementById('phoneChoicePopover').classList.remove('open');
-      document.getElementById('popoverBackdrop').classList.remove('open');
-    }
-
+    /* Tab Switching Logic */
     function switchTab(tabName, triggerBtn) {
       const panes = document.querySelectorAll('.tab-pane');
       panes.forEach(pane => {
@@ -1285,11 +1294,14 @@
         activePane.classList.add('active');
       }
 
+      if (!triggerBtn) {
+        triggerBtn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
+      }
+
       if (triggerBtn) {
         triggerBtn.classList.add('active');
       }
     }
   </script>
-
 </body>
 </html>
