@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Surya's Resume</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #f3f2ef;
+      color: #191919;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .linkedin-card {
+      width: 100%;
+      max-width: 860px;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      height: fit-content;
+    }
+
+    /* Top Hero Banner */
+    .hero-banner {
+      height: 160px;
+      background: linear-gradient(135deg, #0a66c2 0%, #701a75 50%, #ea580c 100%);
+      position: relative;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      padding: 0 2rem 1.5rem 2rem;
+      position: relative;
+      border-bottom: 1px solid #e0e0e0;
+      background: #ffffff;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      margin-top: -65px;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+      color: #ffffff;
+      border: 4px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .verified-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: #0a66c2;
+      color: #ffffff;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      border: 2px solid #ffffff;
+    }
+
+    .profile-info h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #191919;
+    }
+
+    .headline {
+      font-size: 1.05rem;
+      color: #191919;
+      font-weight: 600;
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+
+    .meta-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #5e5e5e;
+      margin-top: 0.5rem;
+    }
+
+    .meta-details span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #0a66c2;
+      color: #ffffff;
+      border: none;
+      padding: 0.55rem 1.25rem;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: #004182;
+    }
+
+    .btn-secondary {
+      background: #eff6ff;
+      color: #0a66c2;
+      border: 1.5px solid #0a66c2;
+      padding: 0.55rem 1.25rem;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #dbeafe;
+    }
+
+    .btn-download-cv {
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      padding: 0.55rem 1.25rem;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+    }
+
+    .btn-download-cv:hover {
+      background: #1e293b;
+      transform: translateY(-1px);
+    }
+
+    /* Capsule Pill Navigation */
+    nav {
+      background: #fafafa;
+      display: flex;
+      overflow-x: auto;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 1.5rem;
+      gap: 0.75rem;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      background: #ffffff;
+      border: 1.5px solid #e0e0e0;
+      outline: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #5e5e5e;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .tab-btn:hover {
+      background: #eff6ff;
+      color: #0a66c2;
+      border-color: #bfdbfe;
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #0a66c2 0%, #2563eb 100%);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 6px 18px -4px rgba(10, 102, 194, 0.4);
+    }
+
+    /* Content Area */
+    .tab-container {
+      padding: 2rem;
+      min-height: 380px;
+      background: #ffffff;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block !important;
+      animation: fadeInSlide 0.25s ease-in-out forwards;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-heading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #191919;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Content Cards */
+    .card-item {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-item-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #191919;
+    }
+
+    .card-item-company {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0a66c2;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-item-date {
+      font-size: 0.85rem;
+      color: #5e5e5e;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-item-list {
+      padding-left: 1.25rem;
+      color: #333;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .card-item-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Summary Card */
+    .summary-card {
+      background: #f8fafc;
+      border: 1px solid #e0e0e0;
+      border-left: 5px solid #0a66c2;
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #334155;
+    }
+
+    /* Skills */
+    .skills-category {
+      margin-bottom: 1.5rem;
+    }
+
+    .skills-category-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #5e5e5e;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .skill-badge-card {
+      padding: 0.55rem 0.95rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid transparent;
+    }
+
+    .sk-blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .sk-purple { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
+    .sk-pink { background: #fdf2f8; color: #be185d; border-color: #fbcfe8; }
+    .sk-emerald { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+    .sk-amber { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+
+    /* Contact Links */
+    .contact-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .contact-link-card {
+      background: #f8fafc;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: #191919;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.25s ease;
+      width: 100%;
+      text-align: left;
+    }
+
+    .contact-link-card:hover {
+      background: #ffffff;
+      border-color: #0a66c2;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -8px rgba(10, 102, 194, 0.2);
+    }
+
+    .phone-wrapper:hover {
+      transform: none;
+    }
+
+    .contact-app-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: #ffffff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .app-linkedin { background: #0a66c2; }
+    .app-gmail { background: #ea4335; }
+    .app-phone { background: #10b981; }
+
+    .contact-app-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #191919;
+    }
+
+    .contact-link-card:hover .contact-app-name {
+      color: #0a66c2;
+    }
+
+    /* Popover */
+    .phone-wrapper {
+      position: relative;
+    }
+
+    .contact-choice-popover {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      padding: 0.5rem;
+      z-index: 10;
+      min-width: 180px;
+    }
+
+    .contact-choice-popover.open {
+      display: block;
+    }
+
+    .choice-option {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #191919;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .choice-option:hover {
+      background: #f3f4f6;
+    }
+
+    .choice-option i {
+      width: 20px;
+      text-align: center;
+    }
+
+    .choice-option.call-option i { color: #10b981; }
+    .choice-option.whatsapp-option i { color: #25d366; }
+
+    .popover-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9;
+    }
+
+    .popover-backdrop.open {
+      display: block;
+    }
+
+    /* Overview Grid */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .overview-box {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      border-top: 3px solid #0a66c2;
+    }
+
+    .overview-box h4 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: #5e5e5e;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+    }
+
+    .overview-box p {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #191919;
+    }
+
+    /* Lead Tracking Modal */
+    .tracker-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .tracker-modal-overlay.open {
+      display: flex;
+    }
+
+    .tracker-modal {
+      background: #ffffff;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 440px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .tracker-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .tracker-close-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .tracker-modal-header h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tracker-modal-header p {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+      line-height: 1.45;
+    }
+
+    .tracker-form {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .tracker-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-align: left;
+    }
+
+    .tracker-input-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tracker-input-group input {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .tracker-input-group input:focus {
+      border-color: #0a66c2;
+    }
+
+    .btn-submit-download {
+      background: #0a66c2;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn-submit-download:hover {
+      background: #004182;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e0e0e0;
+      padding: 1.25rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #5e5e5e;
+      background: #fafafa;
+    }
+
+    /* ===================================================
+       ATS-READY PROFESSIONAL PRINTABLE CV DOCUMENT
+       =================================================== */
+    #cv-printable-document {
+      display: none;
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 12mm 15mm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .linkedin-card, .popover-backdrop, #phoneChoicePopover, .tracker-modal-overlay {
+        display: none !important;
+      }
+
+      #cv-printable-document {
+        display: block !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-family: 'Inter', Arial, sans-serif !important;
+        line-height: 1.45 !important;
+      }
+
+      .pro-cv-header {
+        border-bottom: 2px solid #0f172a;
+        padding-bottom: 8px;
+        margin-bottom: 14px;
+        text-align: center;
+      }
+
+      .pro-cv-name {
+        font-size: 20pt;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #0f172a;
+        margin-bottom: 3px;
+      }
+
+      .pro-cv-role {
+        font-size: 11pt;
+        font-weight: 700;
+        color: #0a66c2;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 6px;
+      }
+
+      .pro-cv-contact-row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 9pt;
+        color: #334155;
+      }
+
+      .pro-cv-section {
+        margin-bottom: 12px;
+      }
+
+      .pro-cv-heading {
+        font-size: 10pt;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #0f172a;
+        border-bottom: 1.2px solid #cbd5e1;
+        padding-bottom: 2px;
+        margin-bottom: 6px;
+      }
+
+      .pro-cv-summary {
+        font-size: 9pt;
+        color: #334155;
+        text-align: justify;
+      }
+
+      .pro-cv-job {
+        margin-bottom: 8px;
+      }
+
+      .pro-cv-job-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 9.5pt;
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      .pro-cv-job-sub {
+        font-size: 9pt;
+        font-weight: 600;
+        color: #0a66c2;
+        margin-bottom: 3px;
+      }
+
+      .pro-cv-list {
+        padding-left: 16px;
+        margin: 0;
+        font-size: 8.8pt;
+        color: #334155;
+      }
+
+      .pro-cv-list li {
+        margin-bottom: 2.5px;
+      }
+
+      .pro-cv-skills-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 8.8pt;
+      }
+
+      .pro-cv-skills-table td {
+        padding: 2.5px 0;
+        vertical-align: top;
+      }
+
+      .pro-cv-skills-table td.skill-lbl {
+        width: 28%;
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      .pro-cv-skills-table td.skill-val {
+        width: 72%;
+        color: #334155;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 0.5rem; }
+      .linkedin-card { border-radius: 12px; }
+      .hero-banner { height: 110px; }
+      .profile-header { padding: 0 1.25rem 1.25rem 1.25rem; }
+      .avatar-wrapper { margin-top: -50px; }
+      .avatar { width: 96px; height: 96px; font-size: 1.9rem; }
+      .profile-info h1 { font-size: 1.4rem; }
+      .headline { font-size: 0.92rem; }
+      .meta-details { font-size: 0.82rem; gap: 0.6rem; }
+      .action-row { flex-direction: column; }
+      .btn-primary, .btn-secondary, .btn-download-cv { width: 100%; justify-content: center; }
+      nav { padding: 0.75rem 1rem; }
+      .tab-btn { padding: 0.55rem 1rem; font-size: 0.85rem; }
+      .tab-container { padding: 1.25rem; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .contact-links-grid { grid-template-columns: 1fr; }
+      .contact-choice-popover { left: auto; right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Profile Card -->
+  <div class="linkedin-card">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner"></div>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="avatar-wrapper">
+        <div class="avatar">SR</div>
+        <div class="verified-badge">✓</div>
+      </div>
+
+      <div class="profile-info">
+        <h1>SURYA M R</h1>
+        <div class="headline">Vehicle Testing Group - R&D | TVS Motor Company</div>
+
+        <div class="meta-details">
+          <span>📍 Hosur / Erode, Tamil Nadu, India</span>
+          <span>🏢 TVS Motor Company</span>
+          <span>🔬 R&D & Quality Engineering</span>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-primary" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[5])">
+            <i class="fa-solid fa-paper-plane"></i> Contact Info
+          </button>
+          <button class="btn-secondary" onclick="switchTab('experience', document.querySelectorAll('.tab-btn')[2])">
+            <i class="fa-solid fa-briefcase"></i> View Experience
+          </button>
+          <button class="btn-download-cv" onclick="openDownloadTrackerModal()">
+            <i class="fa-solid fa-file-arrow-down"></i> Download CV
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Capsule Pill Tab Navigation -->
+    <nav>
+      <button class="tab-btn active" onclick="switchTab('profile', this)">🏠 Profile Home</button>
+      <button class="tab-btn" onclick="switchTab('summary', this)">📝 Summary</button>
+      <button class="tab-btn" onclick="switchTab('experience', this)">💼 Experience</button>
+      <button class="tab-btn" onclick="switchTab('skills', this)">⚡ Skills</button>
+      <button class="tab-btn" onclick="switchTab('education', this)">🎓 Education</button>
+      <button class="tab-btn" onclick="switchTab('contact', this)">📬 Contact</button>
+    </nav>
+
+    <!-- Tab Contents -->
+    <div class="tab-container">
+
+      <!-- 1. Profile Home Tab -->
+      <div id="tab-profile" class="tab-pane active">
+        <div class="section-heading">📌 Professional Snapshot</div>
+        <p style="color: #5e5e5e; line-height: 1.6;">
+          Mechanical Engineering professional specializing in rig-based road simulation, servo-hydraulic testing (Instron), and track durability analysis at TVS Motor Company R&D.
+        </p>
+
+        <div class="overview-grid">
+          <div class="overview-box">
+            <h4>Current Role</h4>
+            <p>R&D Engineer (Testing)</p>
+          </div>
+          <div class="overview-box" style="border-top-color: #6b21a8;">
+            <h4>Core Facility</h4>
+            <p>NATRAX & Lab Rig Simulation</p>
+          </div>
+          <div class="overview-box" style="border-top-color: #0f766e;">
+            <h4>Company</h4>
+            <p>TVS Motor Company</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. About / Summary Tab -->
+      <div id="tab-summary" class="tab-pane">
+        <div class="section-heading">📝 About / Career Summary</div>
+        <div class="summary-card">
+          Detail-oriented Mechanical Engineering professional with hands-on experience in R&D Vehicle Testing and Quality Engineering within the automotive manufacturing sector. Specializing in rig-based road simulation testing using servo-hydraulic actuators (Instron) and field structural acceleration testing at track facilities like NATRAX. Proven track record of identifying structural vulnerabilities early to directly reduce customer-field issues, improve component fatigue life, and ensure product compliance. Skilled in CAD modeling (Creo Parametric, AutoCAD) with a strong foundation in process optimization and cross-functional root-cause analysis.
+        </div>
+      </div>
+
+      <!-- 3. Experience Tab -->
+      <div id="tab-experience" class="tab-pane">
+        <div class="section-heading">💼 Experience</div>
+
+        <div class="card-item">
+          <div class="card-item-title">R&D Engineer – Vehicle Testing Group</div>
+          <div class="card-item-company">TVS Motor Company — Hosur, India</div>
+          <div class="card-item-date">Jan 2026 – Present</div>
+          <ul class="card-item-list">
+            <li>Simulate accelerated customer usage cycles to identify and resolve field failure risks prior to mass production.</li>
+            <li>Execute lab-based road simulation durability and fatigue testing using dedicated servo-hydraulic test cylinders (Instron systems) to replicate real-world road profile inputs and load histories.</li>
+            <li>Rig up test vehicles with dynamic sensors (triaxial accelerometers, load cells, strain gauges) to acquire structural load data and isolate dynamic stress concentrations during high-speed, rough-road, and accelerated track runs.</li>
+            <li>Analyze structural fatigue, weld joint integrity, and frame compliance to implement actionable engineering feedback aimed directly at minimizing customer-reported warranty and field issues.</li>
+            <li>Collaborate closely with design, quality, and failure analysis teams to carry out Root Cause Analysis on structural failures observed during lab simulations.</li>
+            <li>Maintain complete documentation of testing parameters, defect tracking reports, and validation checklists to ensure compliance with internal standards and safety regulations.</li>
+          </ul>
+        </div>
+
+        <div class="card-item">
+          <div class="card-item-title">Quality Engineer</div>
+          <div class="card-item-company">TVS Motor Company — Hosur, India</div>
+          <div class="card-item-date">June 2023 – March 2025 · 1 Year 9 Months</div>
+          <ul class="card-item-list">
+            <li>Conducted in-process and final quality inspections across manufacturing lines to enforce strict compliance with engineering and quality benchmarks.</li>
+            <li>Implemented Corrective and Preventive Actions (CAPA) to systematically eliminate defects, reduce rework rates, and optimize production yield.</li>
+            <li>Partnered with cross-functional teams to resolve quality non-conformances and streamline line-rejection workflows.</li>
+            <li>Managed continuous quality documentation, supported internal/external audits, and assisted with supplier quality evaluations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. Skills Tab -->
+      <div id="tab-skills" class="tab-pane">
+        <div class="section-heading">⚡ Skills & Technologies</div>
+
+        <div class="skills-category">
+          <div class="skills-category-title">🏎️ R&D - Vehicle Track Testing & Rig Simulation</div>
+          <div class="skills-grid">
+            <span class="skill-badge-card sk-blue">Structural Acceleration Test</span>
+            <span class="skill-badge-card sk-blue">On-Road Durability</span>
+            <span class="skill-badge-card sk-blue">Rig Setup (Instron Actuators)</span>
+            <span class="skill-badge-card sk-blue">NATRAX Track Testing</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-title">📡 Instrumentation & Data Acquisition (DAQ)</div>
+          <div class="skills-grid">
+            <span class="skill-badge-card sk-amber">Accelerometers</span>
+            <span class="skill-badge-card sk-amber">Strain Gauges</span>
+            <span class="skill-badge-card sk-amber">Load Cells</span>
+            <span class="skill-badge-card sk-amber">Dynamic Sensor Rigging</span>
+            <span class="skill-badge-card sk-amber">Fatigue & Load History Analysis</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-title">🛡️ Automotive Quality & Problem Solving</div>
+          <div class="skills-grid">
+            <span class="skill-badge-card sk-purple">Quality Assurance (QA/QC)</span>
+            <span class="skill-badge-card sk-purple">Root Cause Analysis (CAPA / 8D)</span>
+            <span class="skill-badge-card sk-purple">Customer Field Problem Reduction</span>
+            <span class="skill-badge-card sk-purple">Inspection & Auditing</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-title">📐 CAD & Design Tools</div>
+          <div class="skills-grid">
+            <span class="skill-badge-card sk-pink">Creo Parametric</span>
+            <span class="skill-badge-card sk-pink">AutoCAD</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-title">💻 Software & Utilities</div>
+          <div class="skills-grid">
+            <span class="skill-badge-card sk-emerald">MS Office (Excel, Word, PowerPoint)</span>
+            <span class="skill-badge-card sk-emerald">Video Editing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Education Tab -->
+      <div id="tab-education" class="tab-pane">
+        <div class="section-heading">🎓 Education</div>
+
+        <div class="card-item">
+          <div class="card-item-title">Diploma in Mechanical Engineering</div>
+          <div class="card-item-company">Sakthi Polytechnic College, Erode, Tamil Nadu</div>
+          <div class="card-item-date">2020 – 2023 • Score: 72.3%</div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-item-title">SSLC (Class 10)</div>
+          <div class="card-item-company">Sri Venkateshwara Vidhyalaya Matriculation Higher Secondary School, Erode, Tamil Nadu</div>
+          <div class="card-item-date">2019 – 2020 • Score: 71%</div>
+        </div>
+      </div>
+
+      <!-- 6. Contact Tab -->
+      <div id="tab-contact" class="tab-pane">
+        <div class="section-heading">📬 Contact & Connect</div>
+        <div class="contact-links-grid">
+
+          <a href="https://www.linkedin.com/in/suryamr23" 
+             target="_blank" rel="noopener noreferrer" 
+             class="contact-link-card">
+            <div class="contact-app-icon app-linkedin">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+            <span class="contact-app-name">LinkedIn</span>
+          </a>
+
+          <a href="mailto:suryamr023@gmail.com" 
+             onclick="handleSmartMail('suryamr023@gmail.com', event)" 
+             class="contact-link-card">
+            <div class="contact-app-icon app-gmail">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <span class="contact-app-name">Email</span>
+          </a>
+
+          <div class="contact-link-card phone-wrapper" onclick="togglePhoneChoice(event)">
+            <div class="contact-app-icon app-phone">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <span class="contact-app-name">Phone</span>
+
+            <div class="contact-choice-popover" id="phoneChoicePopover">
+              <a href="tel:+917603812426" class="choice-option call-option" onclick="closePhoneChoice()">
+                <i class="fa-solid fa-phone"></i> Call
+              </a>
+              <a href="https://wa.me/917603812426" target="_blank" rel="noopener noreferrer" class="choice-option whatsapp-option" onclick="closePhoneChoice()">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2026 Surya M R
+    </footer>
+
+  </div>
+
+  <!-- ===================================================
+       CV DOWNLOAD TRACKER MODAL POPUP
+       =================================================== -->
+  <div class="tracker-modal-overlay" id="downloadTrackerModal">
+    <div class="tracker-modal">
+      <button class="tracker-close-btn" onclick="closeDownloadTrackerModal()">✕</button>
+
+      <div class="tracker-modal-header">
+        <h3><i class="fa-solid fa-download" style="color: #0a66c2;"></i> Download Full CV</h3>
+        <p>Please enter your details to download Surya's professional engineering resume.</p>
+      </div>
+
+      <form class="tracker-form" id="cvLeadForm" onsubmit="handleLeadSubmit(event)">
+        <div class="tracker-input-group">
+          <label>Your Name *</label>
+          <input type="text" id="leadName" name="name" placeholder="e.g. John Doe" required>
+        </div>
+
+        <div class="tracker-input-group">
+          <label>Work Email / Phone *</label>
+          <input type="text" id="leadContact" name="contact" placeholder="e.g. recruiter@company.com" required>
+        </div>
+
+        <div class="tracker-input-group">
+          <label>Company / Organization</label>
+          <input type="text" id="leadOrg" name="organization" placeholder="e.g. TVS / Tata / Bosch">
+        </div>
+
+        <button type="submit" class="btn-submit-download" id="submitBtn">
+          <i class="fa-solid fa-file-arrow-down"></i> Continue to Download
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       ATS-READY PROFESSIONAL PRINTABLE CV DOCUMENT
+       =================================================== -->
+  <div id="cv-printable-document">
+    <div class="pro-cv-header">
+      <div class="pro-cv-name">SURYA M R</div>
+      <div class="pro-cv-role">R&D Engineer – Vehicle Testing Group</div>
+      <div class="pro-cv-contact-row">
+        <span>📍 Hosur / Erode, Tamil Nadu, India</span>
+        <span>✉️ suryamr023@gmail.com</span>
+        <span>📞 +91 76038 12426</span>
+        <span>🔗 linkedin.com/in/suryamr23</span>
+      </div>
+    </div>
+
+    <div class="pro-cv-section">
+      <div class="pro-cv-heading">Professional Summary</div>
+      <p class="pro-cv-summary">
+        Detail-oriented Mechanical Engineering professional with strong hands-on expertise in R&D Vehicle Testing and Automotive Quality Engineering. Specialized in lab-based road simulation testing with dedicated servo-hydraulic actuators (Instron systems) and track durability validation at national test facilities (NATRAX). Proven track record of identifying structural vulnerabilities early to reduce customer warranty claims, extend fatigue life, and ensure regulatory compliance. Proficient in CAD modeling (Creo Parametric, AutoCAD), sensor instrumentation, and root-cause analysis (CAPA / 8D).
+      </p>
+    </div>
+
+    <div class="pro-cv-section">
+      <div class="pro-cv-heading">Work Experience</div>
+
+      <div class="pro-cv-job">
+        <div class="pro-cv-job-header">
+          <span>R&D Engineer – Vehicle Testing Group</span>
+          <span>Jan 2026 – Present</span>
+        </div>
+        <div class="pro-cv-job-sub">TVS Motor Company — Hosur, Tamil Nadu</div>
+        <ul class="pro-cv-list">
+          <li>Execute lab-based road simulation durability and fatigue testing using dedicated servo-hydraulic test cylinders (Instron systems) replicating actual road profiles and load histories.</li>
+          <li>Instrument test vehicles with dynamic sensor arrays (triaxial accelerometers, load cells, strain gauges) to acquire structural load data and isolate stress concentration zones.</li>
+          <li>Analyze structural fatigue, frame compliance, and weld integrity to provide actionable engineering feedback that directly reduces customer warranty and field issues.</li>
+          <li>Collaborate cross-functionally with design, quality, and failure analysis teams to perform Root Cause Analysis on lab simulation and track failures.</li>
+          <li>Maintain comprehensive testing logs, validation checklists, and defect reports compliant with internal standards.</li>
+        </ul>
+      </div>
+
+      <div class="pro-cv-job">
+        <div class="pro-cv-job-header">
+          <span>Quality Engineer</span>
+          <span>June 2023 – March 2025</span>
+        </div>
+        <div class="pro-cv-job-sub">TVS Motor Company — Hosur, Tamil Nadu</div>
+        <ul class="pro-cv-list">
+          <li>Conducted in-process and final quality audits across high-volume production lines to enforce engineering specifications and tolerance limits.</li>
+          <li>Formulated and executed Corrective and Preventive Actions (CAPA / 8D) to systematically reduce rejection rates and improve manufacturing yield.</li>
+          <li>Partnered with cross-functional manufacturing and supply chain teams to resolve quality non-conformances and streamline containment workflows.</li>
+          <li>Managed quality documentation, internal quality audit preparation, and supplier quality assessments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pro-cv-section">
+      <div class="pro-cv-heading">Education</div>
+      <div class="pro-cv-job">
+        <div class="pro-cv-job-header">
+          <span>Diploma in Mechanical Engineering</span>
+          <span>2020 – 2023</span>
+        </div>
+        <div class="pro-cv-job-sub">Sakthi Polytechnic College, Erode, Tamil Nadu — Score: 72.3%</div>
+      </div>
+      <div class="pro-cv-job" style="margin-top: 4px;">
+        <div class="pro-cv-job-header">
+          <span>SSLC (Class 10)</span>
+          <span>2019 – 2020</span>
+        </div>
+        <div class="pro-cv-job-sub">Sri Venkateshwara Vidhyalaya Matriculation HSS, Erode, Tamil Nadu — Score: 71%</div>
+      </div>
+    </div>
+
+    <div class="pro-cv-section">
+      <div class="pro-cv-heading">Technical & Engineering Skills</div>
+      <table class="pro-cv-skills-table">
+        <tr>
+          <td class="skill-lbl">R&D & Durability:</td>
+          <td class="skill-val">Rig Simulation (Instron Actuators), Structural Acceleration Testing, NATRAX Track Durability, Fatigue Analysis</td>
+        </tr>
+        <tr>
+          <td class="skill-lbl">Instrumentation (DAQ):</td>
+          <td class="skill-val">Accelerometers, Strain Gauges, Load Cells, Dynamic Sensor Rigging, Load Data Acquisition</td>
+        </tr>
+        <tr>
+          <td class="skill-lbl">Quality & Problem Solving:</td>
+          <td class="skill-val">QA/QC Benchmarking, Root Cause Analysis (CAPA / 8D), Failure Analysis, Quality Auditing</td>
+        </tr>
+        <tr>
+          <td class="skill-lbl">Software & CAD:</td>
+          <td class="skill-val">Creo Parametric, AutoCAD, MS Office (Excel, Word, PowerPoint), Video Editing</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="popover-backdrop" id="popoverBackdrop" onclick="closePhoneChoice()"></div>
+
+  <script>
+    function openDownloadTrackerModal() {
+      document.getElementById('downloadTrackerModal').classList.add('open');
+    }
+
+    function closeDownloadTrackerModal() {
+      document.getElementById('downloadTrackerModal').classList.remove('open');
+    }
+
+    // Handles form submission with Formspree endpoint and triggers print/save as Surya's Resume.pdf
+    async function handleLeadSubmit(event) {
+      event.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing Download...';
+      btn.disabled = true;
+
+      const leadName = document.getElementById('leadName').value;
+      const leadContact = document.getElementById('leadContact').value;
+      const leadOrg = document.getElementById('leadOrg').value || 'Not Specified';
+      const timestamp = new Date().toLocaleString();
+
+      const payload = {
+        name: leadName,
+        contact: leadContact,
+        organization: leadOrg,
+        timestamp: timestamp,
+        _subject: `New Resume Download Report: ${leadName}`
+      };
+
+      // 1. Local backup logging in localStorage
+      const existingDownloads = JSON.parse(localStorage.getItem('cv_downloads') || '[]');
+      existingDownloads.push(payload);
+      localStorage.setItem('cv_downloads', JSON.stringify(existingDownloads));
+
+      // 2. Send report to Formspree endpoint
+      try {
+        await fetch('https://formspree.io/f/xbgrbvej', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.log('Report saved locally.');
+      }
+
+      // Close modal and initiate download
+      closeDownloadTrackerModal();
+      btn.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i> Continue to Download';
+      btn.disabled = false;
+      document.getElementById('cvLeadForm').reset();
+
+      // Ensure the browser default file save name is set to "Surya's Resume"
+      document.title = "Surya's Resume";
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.title = "SURYA M R | Vehicle Testing Group - R&D";
+        }, 1000);
+      }, 300);
+    }
+
+    function handleSmartMail(emailAddress, event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                    || (navigator.maxTouchPoints > 1 && window.innerWidth <= 1024);
+
+      if (isMobile) {
+        window.location.href = 'mailto:' + emailAddress;
+      } else {
+        const webGmailUrl = 'https://mail.google.com/mail/u/0/?fs=1&to=' + encodeURIComponent(emailAddress) + '&tf=cm';
+        window.open(webGmailUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
+
+    function togglePhoneChoice(event) {
+      event.stopPropagation();
+      const popover = document.getElementById('phoneChoicePopover');
+      const backdrop = document.getElementById('popoverBackdrop');
+      popover.classList.toggle('open');
+      backdrop.classList.toggle('open');
+    }
+
+    function closePhoneChoice() {
+      document.getElementById('phoneChoicePopover').classList.remove('open');
+      document.getElementById('popoverBackdrop').classList.remove('open');
+    }
+
+    function switchTab(tabName, triggerBtn) {
+      const panes = document.querySelectorAll('.tab-pane');
+      panes.forEach(pane => {
+        pane.classList.remove('active');
+        pane.style.display = 'none';
+      });
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      const activePane = document.getElementById('tab-' + tabName);
+      if (activePane) {
+        activePane.style.display = 'block';
+        activePane.classList.add('active');
+      }
+
+      if (triggerBtn) {
+        triggerBtn.classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
