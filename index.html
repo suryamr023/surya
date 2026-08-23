@@ -12,382 +12,789 @@
   <meta property="og:type" content="website">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
+    :root {
+      --primary-yellow: #f5b301;
+      --yellow-hover: #dfa200;
+      --yellow-light: #fff8e6;
+      --dark-slate: #0f172a;
+      --verified-blue: #0a66c2;
+      
+      --page-bg: #f1f5f9;
+      --page-bg-pattern: 
+        radial-gradient(circle at 15% 15%, rgba(245, 179, 1, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(14, 165, 233, 0.1) 0%, transparent 45%),
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+      
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-body: #334155;
+      --info-bg: #f8fafc;
+      --border-gray: #e2e8f0;
+      --modal-bg: #ffffff;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Auto Dark Mode System Adaptation */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page-bg: #030712;
+        --page-bg-pattern: 
+          radial-gradient(circle at 15% 15%, rgba(245, 179, 1, 0.12) 0%, transparent 45%),
+          radial-gradient(circle at 85% 85%, rgba(14, 165, 233, 0.08) 0%, transparent 45%),
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        
+        --card-bg: #0b0f19;
+        --card-border: #1e293b;
+        --card-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+        
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-body: #cbd5e1;
+        --info-bg: #111827;
+        --border-gray: #1e293b;
+        --modal-bg: #0f172a;
+      }
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
-      background-color: #f3f2ef;
-      color: #191919;
-      padding: 2rem 1rem;
-      display: flex;
-      justify-content: center;
+      background-color: var(--page-bg);
+      background-image: var(--page-bg-pattern);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      color: var(--text-main);
       min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
     }
 
-    .linkedin-card {
+    /* Outer Stage Frame */
+    .showcase-stage {
       width: 100%;
-      max-width: 860px;
-      background: #ffffff;
-      border-radius: 16px;
-      border: 1px solid #e0e0e0;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      max-width: 1020px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--card-shadow);
       overflow: hidden;
-      height: fit-content;
-    }
-
-    /* Top Hero Banner */
-    .hero-banner {
-      height: 160px;
-      background: linear-gradient(135deg, #0a66c2 0%, #701a75 50%, #ea580c 100%);
+      display: grid;
+      grid-template-columns: 360px 1fr;
       position: relative;
+      animation: stageEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
-    /* Profile Header */
-    .profile-header {
-      padding: 0 2rem 1.5rem 2rem;
-      position: relative;
-      border-bottom: 1px solid #e0e0e0;
-      background: #ffffff;
+    @keyframes stageEntrance {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
 
-    .avatar-wrapper {
-      position: relative;
-      margin-top: -65px;
-      margin-bottom: 0.75rem;
-      display: inline-block;
-    }
-
-    .avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #4f46e5, #9333ea);
-      color: #ffffff;
-      border: 4px solid #ffffff;
+    /* Left Visual Column */
+    .visual-column {
+      background: var(--primary-yellow);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      font-weight: 800;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      padding-top: 2rem;
+      overflow: hidden;
     }
 
-    .verified-badge {
+    .visual-column::before {
+      content: '';
       position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background: #0a66c2;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+      pointer-events: none;
+      animation: slowRotate 20s linear infinite;
+    }
+
+    @keyframes slowRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .visual-top-icons {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 0 2rem;
+      font-size: 1.2rem;
+      color: var(--dark-slate);
+      position: relative;
+      z-index: 2;
+    }
+
+    .visual-top-icons i {
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+    }
+
+    .visual-top-icons i:hover {
+      transform: scale(1.25) rotate(8deg);
+      color: #000;
+    }
+
+    .portrait-wrapper {
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Portrait Box Floating Hover Effect */
+    .portrait-box {
+      width: 210px;
+      height: 260px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border: 4px solid #ffffff;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       color: #ffffff;
+      position: relative;
+      overflow: visible;
+      transition: var(--transition);
+      animation: floatAvatar 4s ease-in-out infinite;
+    }
+
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .portrait-box:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    .portrait-box .monogram {
+      font-family: 'Outfit', sans-serif;
+      font-size: 4.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-yellow), #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+
+    .portrait-box:hover .monogram {
+      transform: scale(1.08);
+    }
+
+    .portrait-badge {
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(245, 179, 1, 0.2);
+      color: var(--primary-yellow);
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      border: 1px solid rgba(245, 179, 1, 0.4);
+      transition: var(--transition);
+    }
+
+    .portrait-box:hover .portrait-badge {
+      background: var(--primary-yellow);
+      color: var(--dark-slate);
+      border-color: var(--primary-yellow);
+    }
+
+    /* Verified Badge Icon with Continuous Pulse */
+    .avatar-verified-badge {
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      background: var(--verified-blue);
+      color: #ffffff;
+      border: 3px solid #ffffff;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      width: 26px;
-      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 800;
-      border: 2px solid #ffffff;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.4);
+      animation: pulseGlow 2.5s infinite;
     }
 
-    .profile-info h1 {
-      font-size: 1.85rem;
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(10, 102, 194, 0.5), 0 4px 12px rgba(0,0,0,0.25);
+      }
+      50% {
+        box-shadow: 0 0 0 8px rgba(10, 102, 194, 0), 0 4px 12px rgba(0,0,0,0.25);
+      }
+    }
+
+    /* Slide Bottom Bar */
+    .slider-track-bar {
+      background: var(--dark-slate);
+      color: #ffffff;
+      display: grid;
+      grid-template-columns: 1fr 90px;
+      height: 54px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .slider-numbers {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .slider-progress-line {
+      flex: 1;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 0 0.85rem;
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .slider-progress-active {
+      width: 16.66%;
+      height: 100%;
+      background: var(--primary-yellow);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slider-controls {
+      background: var(--primary-yellow);
+      color: var(--dark-slate);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .slider-controls i {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .slider-controls i:hover {
+      transform: scale(1.35);
+    }
+
+    /* Right Main Editorial Column */
+    .editorial-column {
+      background: var(--card-bg);
+      padding: 2rem 2.5rem 1.75rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 0.3s ease;
+      overflow: hidden;
+    }
+
+    /* Editorial Navbar */
+    .editorial-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.4rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .editorial-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link-btn {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      padding-bottom: 4px;
+      white-space: nowrap;
+    }
+
+    .nav-link-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--primary-yellow);
+      border-radius: 2px;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-link-btn:hover {
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .nav-link-btn.active {
+      color: var(--text-main);
+    }
+
+    .nav-link-btn.active::after {
+      width: 100%;
+      left: 0;
+    }
+
+    /* Stage Panes & Directional Animated Transitions */
+    .editorial-stage-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .editorial-pane {
+      display: none;
+      width: 100%;
+    }
+
+    .editorial-pane.active {
+      display: block;
+    }
+
+    /* Forward (Next Slide) Animation */
+    .editorial-pane.slide-forward {
+      animation: tabSlideForward 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes tabSlideForward {
+      0% {
+        opacity: 0;
+        transform: translateX(40px) scale(0.97);
+        filter: blur(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    /* Backward (Prev Slide) Animation */
+    .editorial-pane.slide-backward {
+      animation: tabSlideBackward 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes tabSlideBackward {
+      0% {
+        opacity: 0;
+        transform: translateX(-40px) scale(0.97);
+        filter: blur(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    /* Staggered Children Animation inside Active Panes */
+    .editorial-pane.active > * {
+      animation: contentFadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .editorial-pane.active > *:nth-child(1) { animation-delay: 0.05s; }
+    .editorial-pane.active > *:nth-child(2) { animation-delay: 0.1s; }
+    .editorial-pane.active > *:nth-child(3) { animation-delay: 0.15s; }
+    .editorial-pane.active > *:nth-child(4) { animation-delay: 0.2s; }
+    .editorial-pane.active > *:nth-child(5) { animation-delay: 0.25s; }
+
+    @keyframes contentFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .category-badge {
+      display: inline-block;
+      background: #475569;
+      color: #ffffff;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .category-badge:hover {
+      background: var(--primary-yellow);
+      color: var(--dark-slate);
+      transform: scale(1.05);
+    }
+
+    .editorial-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.3rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: #191919;
-    }
-
-    .headline {
-      font-size: 1.05rem;
-      color: #191919;
-      font-weight: 600;
-      margin-top: 0.25rem;
-      line-height: 1.4;
-    }
-
-    .meta-details {
+      color: var(--text-main);
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.9rem;
-      color: #5e5e5e;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .inline-verified-badge {
+      color: var(--verified-blue);
+      font-size: 1.25rem;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .editorial-title:hover .inline-verified-badge {
+      transform: rotate(360deg) scale(1.2);
+    }
+
+    .editorial-subtitle {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .editorial-description {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 540px;
+      margin-bottom: 1.25rem;
+    }
+
+    .read-more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .read-more-link i {
+      font-size: 0.75rem;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .read-more-link:hover {
+      color: var(--primary-yellow);
+      transform: translateX(4px);
+    }
+
+    .read-more-link:hover i {
+      transform: translateX(6px) scale(1.2);
+    }
+
+    /* Information Cards */
+    .info-card-block {
+      background: var(--info-bg);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      margin-bottom: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .info-card-block:hover {
+      transform: translateY(-3px) scale(1.01);
+      border-color: rgba(245, 179, 1, 0.4);
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    .info-card-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .info-card-sub {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary-yellow);
+      margin-top: 0.15rem;
+    }
+
+    .info-card-list {
+      padding-left: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-body);
+      line-height: 1.6;
       margin-top: 0.5rem;
     }
 
-    .meta-details span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
+    .info-card-list li {
+      margin-bottom: 0.35rem;
     }
 
-    .action-row {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-      flex-wrap: wrap;
+    /* Skills Categories & Interactive Pills */
+    .skills-cluster {
+      margin-bottom: 1rem;
     }
 
-    .btn-download-cv {
-      background: #0f172a;
-      color: #ffffff;
-      border: none;
-      padding: 0.55rem 1.25rem;
-      border-radius: 24px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
-    }
-
-    .btn-download-cv:hover {
-      background: #1e293b;
-      transform: translateY(-1px);
-    }
-
-    /* Capsule Pill Navigation */
-    nav {
-      background: #fafafa;
-      display: flex;
-      overflow-x: auto;
-      border-bottom: 1px solid #e0e0e0;
-      padding: 1rem 1.5rem;
-      gap: 0.75rem;
-      scrollbar-width: none;
-    }
-    nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .tab-btn {
-      background: #ffffff;
-      border: 1.5px solid #e0e0e0;
-      outline: none;
-      padding: 0.65rem 1.25rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #5e5e5e;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-    }
-
-    .tab-btn:hover {
-      background: #eff6ff;
-      color: #0a66c2;
-      border-color: #bfdbfe;
-      transform: translateY(-1px);
-    }
-
-    .tab-btn.active {
-      background: linear-gradient(135deg, #0a66c2 0%, #2563eb 100%);
-      color: #ffffff;
-      border-color: transparent;
-      box-shadow: 0 6px 18px -4px rgba(10, 102, 194, 0.4);
-    }
-
-    /* Content Area */
-    .tab-container {
-      padding: 2rem;
-      min-height: 380px;
-      background: #ffffff;
-    }
-
-    .tab-pane {
-      display: none;
-    }
-
-    .tab-pane.active {
-      display: block !important;
-      animation: fadeInSlide 0.25s ease-in-out forwards;
-    }
-
-    @keyframes fadeInSlide {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .section-heading {
-      font-size: 1.25rem;
+    .skills-cluster-title {
+      font-size: 0.8rem;
       font-weight: 800;
-      color: #191919;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    /* Content Cards */
-    .card-item {
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .card-item-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #191919;
-    }
-
-    .card-item-company {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #0a66c2;
-      margin-bottom: 0.25rem;
-    }
-
-    .card-item-date {
-      font-size: 0.85rem;
-      color: #5e5e5e;
-      margin-bottom: 0.75rem;
-    }
-
-    .card-item-list {
-      padding-left: 1.25rem;
-      color: #333;
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .card-item-list li {
-      margin-bottom: 0.4rem;
-    }
-
-    /* Summary Card */
-    .summary-card {
-      background: #f8fafc;
-      border: 1px solid #e0e0e0;
-      border-left: 5px solid #0a66c2;
-      padding: 1.5rem;
-      border-radius: 12px;
-      font-size: 0.98rem;
-      line-height: 1.75;
-      color: #334155;
-    }
-
-    /* Skills */
-    .skills-category {
-      margin-bottom: 1.5rem;
-    }
-
-    .skills-category-title {
-      font-size: 0.95rem;
-      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #5e5e5e;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
     }
 
-    .skills-grid {
+    .skills-tag-flex {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.65rem;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
     }
 
-    .skill-badge-card {
-      padding: 0.55rem 0.95rem;
-      border-radius: 10px;
+    .skill-tag-pill {
+      background: var(--info-bg);
+      border: 1px solid var(--border-gray);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
       font-weight: 600;
-      font-size: 0.88rem;
+      color: var(--text-body);
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      border: 1px solid transparent;
+      transition: var(--transition);
     }
 
-    .sk-blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
-    .sk-purple { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
-    .sk-pink { background: #fdf2f8; color: #be185d; border-color: #fbcfe8; }
-    .sk-emerald { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
-    .sk-amber { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+    .skill-tag-pill:hover {
+      border-color: var(--primary-yellow);
+      background: rgba(245, 179, 1, 0.1);
+      color: var(--primary-yellow);
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 4px 12px rgba(245, 179, 1, 0.2);
+    }
 
-    /* Contact Links */
-    .contact-links-grid {
+    /* Interactive Snapshot Tiles */
+    .overview-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+      margin-bottom: 1.25rem;
     }
 
-    .contact-link-card {
-      background: #f8fafc;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 14px;
-      padding: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: #191919;
-      cursor: pointer;
-      outline: none;
-      transition: all 0.25s ease;
-      width: 100%;
-      text-align: left;
+    .overview-box {
+      background: var(--info-bg);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-align: center;
+      border-top: 3px solid var(--primary-yellow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
     }
 
-    .contact-link-card:hover {
-      background: #ffffff;
-      border-color: #0a66c2;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px -8px rgba(10, 102, 194, 0.2);
+    .overview-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      border-top-width: 4px;
     }
 
-    .contact-app-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      color: #ffffff;
-      flex-shrink: 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-    }
-
-    .app-linkedin { background: #0a66c2; }
-    .app-github { background: #24292e; }
-    .app-gmail { background: #ea4335; }
-    .app-phone { background: #10b981; }
-
-    .contact-app-name {
-      font-size: 1.05rem;
+    .overview-box h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
       font-weight: 700;
-      color: #191919;
     }
 
-    .contact-link-card:hover .contact-app-name {
-      color: #0a66c2;
+    .overview-box p {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
     }
 
-    /* Universal Modal Styles */
+    /* Bottom Action Strip */
+    .bottom-action-strip {
+      border-top: 1px solid var(--border-gray);
+      padding-top: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .bottom-strip-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-main);
+      margin-bottom: 0.65rem;
+    }
+
+    .action-input-cluster {
+      display: flex;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-gray);
+      max-width: 480px;
+      transition: var(--transition);
+    }
+
+    .action-input-cluster:focus-within {
+      border-color: var(--primary-yellow);
+      box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .action-input-field {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      background: var(--info-bg);
+    }
+
+    .action-submit-btn {
+      background: var(--primary-yellow);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--dark-slate);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .action-submit-btn:hover {
+      background: var(--yellow-hover);
+      gap: 0.7rem;
+    }
+
+    .action-submit-btn i {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .action-submit-btn:hover i {
+      transform: translateY(2px) scale(1.15);
+    }
+
+    /* Footer Section */
+    .showcase-footer {
+      border-top: 1px solid var(--border-gray);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-yellow);
+      transform: translateY(-1px);
+    }
+
+    /* Modal Styles */
     .center-modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       z-index: 100;
       align-items: center;
       justify-content: center;
@@ -396,52 +803,67 @@
 
     .center-modal-overlay.open {
       display: flex;
+      animation: backdropFade 0.25s ease forwards;
+    }
+
+    @keyframes backdropFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .center-modal {
-      background: #ffffff;
-      border-radius: 18px;
+      background: var(--modal-bg);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius-lg);
       width: 100%;
       max-width: 420px;
       padding: 2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
       position: relative;
-      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: modalSpring 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       text-align: center;
+      color: var(--text-main);
     }
 
-    @keyframes modalPop {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    @keyframes modalSpring {
+      from {
+        transform: scale(0.85) translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
     }
 
     .modal-close-btn {
       position: absolute;
       top: 1.25rem;
       right: 1.25rem;
-      background: #f1f5f9;
-      border: none;
+      background: var(--info-bg);
+      border: 1px solid var(--border-gray);
       width: 32px;
       height: 32px;
       border-radius: 50%;
       font-size: 0.9rem;
-      color: #64748b;
+      color: var(--text-muted);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
+      transition: var(--transition);
     }
 
     .modal-close-btn:hover {
-      background: #e2e8f0;
-      color: #0f172a;
+      background: var(--border-gray);
+      color: var(--text-main);
+      transform: rotate(90deg) scale(1.1);
     }
 
     .modal-header h3 {
       font-size: 1.25rem;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -450,12 +872,11 @@
 
     .modal-header p {
       font-size: 0.88rem;
-      color: #64748b;
+      color: var(--text-muted);
       margin-top: 0.35rem;
       line-height: 1.45;
     }
 
-    /* Communication Options in Center Dialog */
     .comm-options-list {
       margin-top: 1.5rem;
       display: flex;
@@ -468,12 +889,13 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.9rem 1.2rem;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       text-decoration: none;
       font-weight: 700;
       font-size: 0.95rem;
-      transition: all 0.2s ease;
+      transition: var(--transition);
       border: 1.5px solid transparent;
+      cursor: pointer;
     }
 
     .comm-action-btn .btn-label-group {
@@ -482,16 +904,17 @@
       gap: 0.75rem;
     }
 
-    .comm-btn-call {
-      background: #ecfdf5;
-      color: #047857;
-      border-color: #a7f3d0;
+    /* Mail Action Button */
+    .comm-btn-mail {
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fecaca;
     }
-    .comm-btn-call:hover {
-      background: #10b981;
+    .comm-btn-mail:hover {
+      background: #ea4335;
       color: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 18px rgba(234, 67, 53, 0.35);
     }
 
     .comm-btn-whatsapp {
@@ -502,39 +925,8 @@
     .comm-btn-whatsapp:hover {
       background: #25d366;
       color: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
-    }
-
-    /* Overview Grid */
-    .overview-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-
-    .overview-box {
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 1.25rem;
-      text-align: center;
-      border-top: 3px solid #0a66c2;
-    }
-
-    .overview-box h4 {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      color: #5e5e5e;
-      margin-bottom: 0.35rem;
-      font-weight: 700;
-    }
-
-    .overview-box p {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #191919;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 18px rgba(37, 211, 102, 0.35);
     }
 
     /* Lead Form inside Download Modal */
@@ -555,54 +947,49 @@
     .tracker-input-group label {
       font-size: 0.8rem;
       font-weight: 700;
-      color: #334155;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
     .tracker-input-group input {
-      border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
+      background: var(--info-bg);
+      color: var(--text-main);
+      border: 1.5px solid var(--border-gray);
+      border-radius: 8px;
       padding: 0.65rem 0.9rem;
       font-size: 0.92rem;
       outline: none;
-      transition: border-color 0.2s ease;
+      transition: var(--transition);
     }
 
     .tracker-input-group input:focus {
-      border-color: #0a66c2;
+      border-color: var(--primary-yellow);
+      box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.2);
+      transform: translateY(-1px);
     }
 
     .btn-submit-download {
-      background: #0a66c2;
-      color: #ffffff;
+      background: var(--primary-yellow);
+      color: var(--dark-slate);
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 0.75rem;
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
       margin-top: 0.5rem;
-      transition: background 0.2s ease;
+      transition: var(--transition);
     }
 
     .btn-submit-download:hover {
-      background: #004182;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid #e0e0e0;
-      padding: 1.25rem;
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #5e5e5e;
-      background: #fafafa;
+      background: var(--yellow-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(245, 179, 1, 0.35);
     }
 
     /* ===================================================
@@ -622,10 +1009,9 @@
         background: #ffffff !important;
         color: #000000 !important;
         padding: 0 !important;
-        margin: 0 !important;
       }
 
-      .linkedin-card, .center-modal-overlay {
+      .showcase-stage, .center-modal-overlay {
         display: none !important;
       }
 
@@ -657,7 +1043,7 @@
       .pro-cv-role {
         font-size: 11pt;
         font-weight: 700;
-        color: #0a66c2;
+        color: #b45309;
         text-transform: uppercase;
         letter-spacing: 0.04em;
         margin-bottom: 6px;
@@ -715,7 +1101,7 @@
       .pro-cv-job-sub {
         font-size: 9pt;
         font-weight: 600;
-        color: #0a66c2;
+        color: #b45309;
         margin-bottom: 3px;
       }
 
@@ -753,278 +1139,299 @@
       }
     }
 
-    @media (max-width: 640px) {
-      body { padding: 0.5rem; }
-      .linkedin-card { border-radius: 12px; }
-      .hero-banner { height: 110px; }
-      .profile-header { padding: 0 1.25rem 1.25rem 1.25rem; }
-      .avatar-wrapper { margin-top: -50px; }
-      .avatar { width: 96px; height: 96px; font-size: 1.9rem; }
-      .profile-info h1 { font-size: 1.4rem; }
-      .headline { font-size: 0.92rem; }
-      .meta-details { font-size: 0.82rem; gap: 0.6rem; }
-      .action-row { flex-direction: column; }
-      .btn-download-cv { width: 100%; justify-content: center; }
-      nav { padding: 0.75rem 1rem; }
-      .tab-btn { padding: 0.55rem 1rem; font-size: 0.85rem; }
-      .tab-container { padding: 1.25rem; }
-      .overview-grid { grid-template-columns: 1fr; }
-      .contact-links-grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      .showcase-stage { grid-template-columns: 1fr; }
+      .portrait-wrapper { padding: 1.5rem 1rem; }
+      .editorial-column { padding: 1.5rem; }
+      .editorial-nav { justify-content: flex-start; gap: 0.85rem; }
+      .showcase-footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Main Profile Card -->
-  <div class="linkedin-card">
+  <!-- Main Showcase Stage with System-Adaptive Color Scheme -->
+  <div class="showcase-stage">
 
-    <!-- Hero Banner -->
-    <div class="hero-banner"></div>
-
-    <!-- Profile Header -->
-    <div class="profile-header">
-      <div class="avatar-wrapper">
-        <div class="avatar">SR</div>
-        <div class="verified-badge">✓</div>
+    <!-- Left Visual Panel -->
+    <div class="visual-column">
+      <div class="visual-top-icons">
+        <i class="fa-solid fa-cloud-arrow-down" onclick="openDownloadTrackerModal()" title="Download Resume"></i>
+        <i class="fa-solid fa-envelope" onclick="openPhoneModal()" title="Contact Options"></i>
       </div>
 
-      <div class="profile-info">
-        <h1>SURYA M R</h1>
-        <div class="headline">Vehicle Testing Group - R&D | TVS Motor Company</div>
+      <div class="portrait-wrapper">
+        <div class="portrait-box">
+          <div class="monogram">SR</div>
+          <div class="portrait-badge">TESTING / R&D</div>
+          <!-- Avatar Verified Badge -->
+          <div class="avatar-verified-badge" title="Verified Engineering Profile">
+            <i class="fa-solid fa-check"></i>
+          </div>
+        </div>
+      </div>
 
-        <div class="meta-details">
-          <span>📍 Hosur / Erode, Tamil Nadu, India</span>
-          <span>🏢 TVS Motor Company</span>
-          <span>🔬 R&D & Quality Engineering</span>
+      <!-- Slide Bottom Tracker Strip -->
+      <div class="slider-track-bar">
+        <div class="slider-numbers">
+          <span id="slideIndexDisplay">01</span>
+          <div class="slider-progress-line">
+            <div class="slider-progress-active" id="sliderProgressBar"></div>
+          </div>
+          <span>06</span>
+        </div>
+        <div class="slider-controls">
+          <i class="fa-solid fa-caret-left" onclick="navigateSlide(-1)"></i>
+          <i class="fa-solid fa-caret-right" onclick="navigateSlide(1)"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Content & Form Column -->
+    <div class="editorial-column">
+
+      <!-- Top Navigation Tabs -->
+      <nav class="editorial-nav" id="profileTabsNav">
+        <button class="nav-link-btn active" data-tab="profile" onclick="switchTab('profile', this)">Profile</button>
+        <button class="nav-link-btn" data-tab="summary" onclick="switchTab('summary', this)">Summary</button>
+        <button class="nav-link-btn" data-tab="experience" onclick="switchTab('experience', this)">Experience</button>
+        <button class="nav-link-btn" data-tab="skills" onclick="switchTab('skills', this)">Skills</button>
+        <button class="nav-link-btn" data-tab="education" onclick="switchTab('education', this)">Education</button>
+        <button class="nav-link-btn" data-tab="contact" onclick="switchTab('contact', this)">Contact</button>
+      </nav>
+
+      <!-- Stage Panes Area -->
+      <div class="editorial-stage-box">
+
+        <!-- 1. Profile Tab -->
+        <div id="tab-profile" class="editorial-pane active">
+          <span class="category-badge">Automotive Testing & R&D</span>
+          <h1 class="editorial-title">
+            SURYA M R
+            <i class="fa-solid fa-circle-check inline-verified-badge" title="Verified Profile"></i>
+          </h1>
+          <div class="editorial-subtitle">Vehicle Testing Group — TVS Motor Company</div>
+          <p class="editorial-description">
+            Mechanical Engineering professional specializing in rig-based road simulation, servo-hydraulic testing (Instron), and track durability analysis at TVS Motor Company R&D.
+          </p>
+
+          <div class="overview-grid">
+            <div class="overview-box">
+              <h4>Current Role</h4>
+              <p>Durability testing (R&D)</p>
+            </div>
+            <div class="overview-box">
+              <h4>Core Focus</h4>
+              <p>Field Validation & Root Cause</p>
+            </div>
+            <div class="overview-box">
+              <h4>Company</h4>
+              <p>TVS Motor Company</p>
+            </div>
+          </div>
+
+          <a class="read-more-link" onclick="switchTab('summary')">
+            Read More <i class="fa-solid fa-play"></i>
+          </a>
         </div>
 
-        <div class="action-row">
-          <button class="btn-download-cv" onclick="openDownloadTrackerModal()">
-            <i class="fa-solid fa-file-arrow-down"></i> Download CV
+        <!-- 2. Summary Tab -->
+        <div id="tab-summary" class="editorial-pane">
+          <span class="category-badge">Career Summary</span>
+          <h1 class="editorial-title">Professional Summary</h1>
+          <div class="editorial-subtitle">Vehicle Testing & Quality Engineering</div>
+          <p class="editorial-description">
+            Detail-oriented Mechanical Engineering professional with hands-on experience in R&D Vehicle Testing and Quality Engineering within the automotive manufacturing sector. Specializing in rig-based road simulation testing using servo-hydraulic actuators (Instron) and field structural acceleration testing at track facilities like NATRAX. Proven track record of identifying structural vulnerabilities early to directly reduce customer-field issues, improve component fatigue life, and ensure product compliance. Skilled in CAD modeling (Creo Parametric, AutoCAD) with a strong foundation in process optimization and cross-functional root-cause analysis.
+          </p>
+          <a class="read-more-link" onclick="switchTab('experience')">
+            View Experience <i class="fa-solid fa-play"></i>
+          </a>
+        </div>
+
+        <!-- 3. Experience Tab -->
+        <div id="tab-experience" class="editorial-pane">
+          <span class="category-badge">Work Experience</span>
+          
+          <div class="info-card-block">
+            <div class="info-card-header">
+              <span>R&D Engineer – Vehicle Testing Group</span>
+              <span>Jan 2026 – Present</span>
+            </div>
+            <div class="info-card-sub">TVS Motor Company — Hosur, India</div>
+            <ul class="info-card-list">
+              <li>Simulate accelerated customer usage cycles to identify and resolve field failure risks prior to mass production.</li>
+              <li>Execute lab-based road simulation durability and fatigue testing using dedicated servo-hydraulic test cylinders (Instron systems) to replicate real-world road profile inputs and load histories.</li>
+              <li>Rig up test vehicles with dynamic sensors (triaxial accelerometers, load cells, strain gauges) to acquire structural load data and isolate dynamic stress concentrations during high-speed, rough-road, and accelerated track runs.</li>
+              <li>Analyze structural fatigue, weld joint integrity, and frame compliance to implement actionable engineering feedback aimed directly at minimizing customer-reported warranty and field issues.</li>
+              <li>Collaborate closely with design, quality, and failure analysis teams to carry out Root Cause Analysis on structural failures observed during lab simulations.</li>
+              <li>Maintain complete documentation of testing parameters, defect tracking reports, and validation checklists to ensure compliance with internal standards and safety regulations.</li>
+            </ul>
+          </div>
+
+          <div class="info-card-block">
+            <div class="info-card-header">
+              <span>Quality Engineer</span>
+              <span>June 2023 – March 2025</span>
+            </div>
+            <div class="info-card-sub">TVS Motor Company — Hosur, India · 1 Year 9 Months</div>
+            <ul class="info-card-list">
+              <li>Conducted in-process and final quality inspections across manufacturing lines to enforce strict compliance with engineering and quality benchmarks.</li>
+              <li>Implemented Corrective and Preventive Actions (CAPA) to systematically eliminate defects, reduce rework rates, and optimize production yield.</li>
+              <li>Partnered with cross-functional teams to resolve quality non-conformances and streamline line-rejection workflows.</li>
+              <li>Managed continuous quality documentation, supported internal/external audits, and assisted with supplier quality evaluations.</li>
+            </ul>
+          </div>
+
+          <a class="read-more-link" onclick="switchTab('skills')">
+            Explore Skills <i class="fa-solid fa-play"></i>
+          </a>
+        </div>
+
+        <!-- 4. Skills Tab -->
+        <div id="tab-skills" class="editorial-pane">
+          <span class="category-badge">Competencies</span>
+          
+          <div class="skills-cluster">
+            <div class="skills-cluster-title">R&D - Vehicle Track Testing & Rig Simulation</div>
+            <div class="skills-tag-flex">
+              <span class="skill-tag-pill">Structural Acceleration Test</span>
+              <span class="skill-tag-pill">On-Road Durability</span>
+              <span class="skill-tag-pill">Rig Setup (Instron Actuators)</span>
+              <span class="skill-tag-pill">NATRAX Track Testing</span>
+            </div>
+          </div>
+
+          <div class="skills-cluster">
+            <div class="skills-cluster-title">Instrumentation & Data Acquisition (DAQ)</div>
+            <div class="skills-tag-flex">
+              <span class="skill-tag-pill">Accelerometers</span>
+              <span class="skill-tag-pill">Strain Gauges</span>
+              <span class="skill-tag-pill">Load Cells</span>
+              <span class="skill-tag-pill">Dynamic Sensor Rigging</span>
+              <span class="skill-tag-pill">Fatigue & Load History Analysis</span>
+            </div>
+          </div>
+
+          <div class="skills-cluster">
+            <div class="skills-cluster-title">Automotive Quality & Problem Solving</div>
+            <div class="skills-tag-flex">
+              <span class="skill-tag-pill">Quality Assurance (QA/QC)</span>
+              <span class="skill-tag-pill">Root Cause Analysis (CAPA / 8D)</span>
+              <span class="skill-tag-pill">Customer Field Problem Reduction</span>
+              <span class="skill-tag-pill">Inspection & Auditing</span>
+            </div>
+          </div>
+
+          <div class="skills-cluster">
+            <div class="skills-cluster-title">CAD, Design & Utilities</div>
+            <div class="skills-tag-flex">
+              <span class="skill-tag-pill">Creo Parametric</span>
+              <span class="skill-tag-pill">AutoCAD</span>
+              <span class="skill-tag-pill">MS Office</span>
+              <span class="skill-tag-pill">Video Editing</span>
+            </div>
+          </div>
+
+          <a class="read-more-link" onclick="switchTab('education')">
+            View Education <i class="fa-solid fa-play"></i>
+          </a>
+        </div>
+
+        <!-- 5. Education Tab -->
+        <div id="tab-education" class="editorial-pane">
+          <span class="category-badge">Academic Background</span>
+          
+          <div class="info-card-block">
+            <div class="info-card-header">
+              <span>Diploma in Mechanical Engineering</span>
+              <span>2020 – 2023</span>
+            </div>
+            <div class="info-card-sub">Sakthi Polytechnic College, Erode, Tamil Nadu</div>
+            <p style="font-size: 0.88rem; color: var(--text-body); margin-top: 0.4rem;">Score: <strong>72.3%</strong></p>
+          </div>
+
+          <div class="info-card-block">
+            <div class="info-card-header">
+              <span>SSLC (Class 10)</span>
+              <span>2019 – 2020</span>
+            </div>
+            <div class="info-card-sub">Sri Venkateshwara Vidhyalaya Matriculation Higher Secondary School, Erode, Tamil Nadu</div>
+            <p style="font-size: 0.88rem; color: var(--text-body); margin-top: 0.4rem;">Score: <strong>71%</strong></p>
+          </div>
+
+          <a class="read-more-link" onclick="switchTab('contact')">
+            Get in Touch <i class="fa-solid fa-play"></i>
+          </a>
+        </div>
+
+        <!-- 6. Contact Tab -->
+        <div id="tab-contact" class="editorial-pane">
+          <span class="category-badge">Connect</span>
+          <h1 class="editorial-title">Reach Out</h1>
+          <div class="editorial-subtitle">Hosur / Erode, Tamil Nadu, India</div>
+          
+          <div class="skills-tag-flex" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+            <a href="https://www.linkedin.com/in/suryamr23" target="_blank" rel="noopener noreferrer" class="skill-tag-pill">
+              <i class="fa-brands fa-linkedin" style="color:#0a66c2;"></i> LinkedIn
+            </a>
+            <a href="https://github.com/suryamr023/" target="_blank" rel="noopener noreferrer" class="skill-tag-pill">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <div class="skill-tag-pill" style="cursor:pointer;" onclick="openPhoneModal()">
+              <i class="fa-solid fa-paper-plane" style="color:#10b981;"></i> Mail / WhatsApp
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Subscribe/Download Form Strip with Cloud Arrow Icon -->
+      <div class="bottom-action-strip">
+        <div class="bottom-strip-label">Download Surya's Resume (CV)</div>
+        <form class="action-input-cluster" onsubmit="handleQuickDownload(event)">
+          <input type="email" class="action-input-field" id="quickEmail" placeholder="Enter your email to download" required>
+          <button type="submit" class="action-submit-btn">
+            Download <i class="fa-solid fa-cloud-arrow-down"></i>
           </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Capsule Pill Tab Navigation -->
-    <nav id="profileTabsNav">
-      <button class="tab-btn active" data-tab="profile" onclick="switchTab('profile', this)">🏠 Profile</button>
-      <button class="tab-btn" data-tab="summary" onclick="switchTab('summary', this)">📝 Summary</button>
-      <button class="tab-btn" data-tab="experience" onclick="switchTab('experience', this)">💼 Experience</button>
-      <button class="tab-btn" data-tab="skills" onclick="switchTab('skills', this)">⚡ Skills</button>
-      <button class="tab-btn" data-tab="education" onclick="switchTab('education', this)">🎓 Education</button>
-      <button class="tab-btn" data-tab="contact" onclick="switchTab('contact', this)">📬 Contact</button>
-    </nav>
-
-    <!-- Tab Contents -->
-    <div class="tab-container">
-
-      <!-- 1. Profile Tab -->
-      <div id="tab-profile" class="tab-pane active">
-        <div class="section-heading">📌 Professional Snapshot</div>
-        <p style="color: #5e5e5e; line-height: 1.6;">
-          Mechanical Engineering professional specializing in rig-based road simulation, servo-hydraulic testing (Instron), and track durability analysis at TVS Motor Company R&D.
-        </p>
-
-        <div class="overview-grid">
-          <div class="overview-box">
-            <h4>Current Role</h4>
-            <p>Durablity testing (R&D)</p>
-          </div>
-          <div class="overview-box" style="border-top-color: #6b21a8;">
-            <h4>Core Focus</h4>
-            <p>Field Validation & Root Cause</p>
-          </div>
-          <div class="overview-box" style="border-top-color: #0f766e;">
-            <h4>Company</h4>
-            <p>TVS Motor Company</p>
-          </div>
-        </div>
+        </form>
       </div>
 
-      <!-- 2. About / Summary Tab -->
-      <div id="tab-summary" class="tab-pane">
-        <div class="section-heading">📝 About / Career Summary</div>
-        <div class="summary-card">
-          Detail-oriented Mechanical Engineering professional with hands-on experience in R&D Vehicle Testing and Quality Engineering within the automotive manufacturing sector. Specializing in rig-based road simulation testing using servo-hydraulic actuators (Instron) and field structural acceleration testing at track facilities like NATRAX. Proven track record of identifying structural vulnerabilities early to directly reduce customer-field issues, improve component fatigue life, and ensure product compliance. Skilled in CAD modeling (Creo Parametric, AutoCAD) with a strong foundation in process optimization and cross-functional root-cause analysis.
+      <!-- Clean Aesthetic Footer Section -->
+      <footer class="showcase-footer">
+        <div class="footer-left">
+          <span>&copy; 2026 Surya M R. All rights reserved.</span>
         </div>
-      </div>
-
-      <!-- 3. Experience Tab -->
-      <div id="tab-experience" class="tab-pane">
-        <div class="section-heading">💼 Experience</div>
-
-        <div class="card-item">
-          <div class="card-item-title">R&D Engineer – Vehicle Testing Group</div>
-          <div class="card-item-company">TVS Motor Company — Hosur, India</div>
-          <div class="card-item-date">Jan 2026 – Present</div>
-          <ul class="card-item-list">
-            <li>Simulate accelerated customer usage cycles to identify and resolve field failure risks prior to mass production.</li>
-            <li>Execute lab-based road simulation durability and fatigue testing using dedicated servo-hydraulic test cylinders (Instron systems) to replicate real-world road profile inputs and load histories.</li>
-            <li>Rig up test vehicles with dynamic sensors (triaxial accelerometers, load cells, strain gauges) to acquire structural load data and isolate dynamic stress concentrations during high-speed, rough-road, and accelerated track runs.</li>
-            <li>Analyze structural fatigue, weld joint integrity, and frame compliance to implement actionable engineering feedback aimed directly at minimizing customer-reported warranty and field issues.</li>
-            <li>Collaborate closely with design, quality, and failure analysis teams to carry out Root Cause Analysis on structural failures observed during lab simulations.</li>
-            <li>Maintain complete documentation of testing parameters, defect tracking reports, and validation checklists to ensure compliance with internal standards and safety regulations.</li>
-          </ul>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/suryamr23" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/suryamr023/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="javascript:void(0)" onclick="openPhoneModal()">Contact</a>
         </div>
-
-        <div class="card-item">
-          <div class="card-item-title">Quality Engineer</div>
-          <div class="card-item-company">TVS Motor Company — Hosur, India</div>
-          <div class="card-item-date">June 2023 – March 2025 · 1 Year 9 Months</div>
-          <ul class="card-item-list">
-            <li>Conducted in-process and final quality inspections across manufacturing lines to enforce strict compliance with engineering and quality benchmarks.</li>
-            <li>Implemented Corrective and Preventive Actions (CAPA) to systematically eliminate defects, reduce rework rates, and optimize production yield.</li>
-            <li>Partnered with cross-functional teams to resolve quality non-conformances and streamline line-rejection workflows.</li>
-            <li>Managed continuous quality documentation, supported internal/external audits, and assisted with supplier quality evaluations.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 4. Skills Tab -->
-      <div id="tab-skills" class="tab-pane">
-        <div class="section-heading">⚡ Skills & Technologies</div>
-
-        <div class="skills-category">
-          <div class="skills-category-title">🏎️ R&D - Vehicle Track Testing & Rig Simulation</div>
-          <div class="skills-grid">
-            <span class="skill-badge-card sk-blue">Structural Acceleration Test</span>
-            <span class="skill-badge-card sk-blue">On-Road Durability</span>
-            <span class="skill-badge-card sk-blue">Rig Setup (Instron Actuators)</span>
-            <span class="skill-badge-card sk-blue">NATRAX Track Testing</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-title">📡 Instrumentation & Data Acquisition (DAQ)</div>
-          <div class="skills-grid">
-            <span class="skill-badge-card sk-amber">Accelerometers</span>
-            <span class="skill-badge-card sk-amber">Strain Gauges</span>
-            <span class="skill-badge-card sk-amber">Load Cells</span>
-            <span class="skill-badge-card sk-amber">Dynamic Sensor Rigging</span>
-            <span class="skill-badge-card sk-amber">Fatigue & Load History Analysis</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-title">🛡️ Automotive Quality & Problem Solving</div>
-          <div class="skills-grid">
-            <span class="skill-badge-card sk-purple">Quality Assurance (QA/QC)</span>
-            <span class="skill-badge-card sk-purple">Root Cause Analysis (CAPA / 8D)</span>
-            <span class="skill-badge-card sk-purple">Customer Field Problem Reduction</span>
-            <span class="skill-badge-card sk-purple">Inspection & Auditing</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-title">📐 CAD & Design Tools</div>
-          <div class="skills-grid">
-            <span class="skill-badge-card sk-pink">Creo Parametric</span>
-            <span class="skill-badge-card sk-pink">AutoCAD</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-title">💻 Software & Utilities</div>
-          <div class="skills-grid">
-            <span class="skill-badge-card sk-emerald">MS Office (Excel, Word, PowerPoint)</span>
-            <span class="skill-badge-card sk-emerald">Video Editing</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Education Tab -->
-      <div id="tab-education" class="tab-pane">
-        <div class="section-heading">🎓 Education</div>
-
-        <div class="card-item">
-          <div class="card-item-title">Diploma in Mechanical Engineering</div>
-          <div class="card-item-company">Sakthi Polytechnic College, Erode, Tamil Nadu</div>
-          <div class="card-item-date">2020 – 2023 • Score: 72.3%</div>
-        </div>
-
-        <div class="card-item">
-          <div class="card-item-title">SSLC (Class 10)</div>
-          <div class="card-item-company">Sri Venkateshwara Vidhyalaya Matriculation Higher Secondary School, Erode, Tamil Nadu</div>
-          <div class="card-item-date">2019 – 2020 • Score: 71%</div>
-        </div>
-      </div>
-
-      <!-- 6. Contact Tab -->
-      <div id="tab-contact" class="tab-pane">
-        <div class="section-heading">📬 Contact & Connect</div>
-        <div class="contact-links-grid">
-
-          <!-- LinkedIn Link -->
-          <a href="https://www.linkedin.com/in/suryamr23" 
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="contact-link-card">
-            <div class="contact-app-icon app-linkedin">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </div>
-            <span class="contact-app-name">LinkedIn</span>
-          </a>
-
-          <!-- GitHub Link -->
-          <a href="https://github.com/suryamr023/" 
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="contact-link-card">
-            <div class="contact-app-icon app-github">
-              <i class="fa-brands fa-github"></i>
-            </div>
-            <span class="contact-app-name">GitHub</span>
-          </a>
-
-          <!-- Email Direct Auto-Handler -->
-          <div class="contact-link-card" onclick="handleAutoEmail('suryamr023@gmail.com')">
-            <div class="contact-app-icon app-gmail">
-              <i class="fa-solid fa-envelope"></i>
-            </div>
-            <span class="contact-app-name">Gmail</span>
-          </div>
-
-          <!-- Phone Modal Trigger Button -->
-          <div class="contact-link-card" onclick="openPhoneModal()">
-            <div class="contact-app-icon app-phone">
-              <i class="fa-solid fa-phone"></i>
-            </div>
-            <span class="contact-app-name">Phone</span>
-          </div>
-
-        </div>
-      </div>
+      </footer>
 
     </div>
-
-    <!-- Footer -->
-    <footer>
-      &copy; 2026 Surya M R
-    </footer>
 
   </div>
 
   <!-- ===================================================
-       CENTER DIALOG: CALL OR WHATSAPP
+       CENTER DIALOG: SEND EMAIL OR WHATSAPP
        =================================================== -->
   <div class="center-modal-overlay" id="phoneModalOverlay" onclick="closePhoneModal(event)">
     <div class="center-modal" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closePhoneModal()">✕</button>
 
       <div class="modal-header">
-        <h3><i class="fa-solid fa-phone-volume" style="color: #10b981;"></i> Connect</h3>
+        <h3><i class="fa-solid fa-comments" style="color: #10b981;"></i> Connect</h3>
         <p>Choose your preferred communication method:</p>
       </div>
 
       <div class="comm-options-list">
-        <a href="tel:+917603812426" class="comm-action-btn comm-btn-call" onclick="closePhoneModal()">
+        <div class="comm-action-btn comm-btn-mail" onclick="handleAutoEmail('suryamr023@gmail.com'); closePhoneModal();">
           <div class="btn-label-group">
-            <i class="fa-solid fa-phone"></i>
-            <span>Phone Call</span>
+            <i class="fa-solid fa-envelope"></i>
+            <span>Send Email</span>
           </div>
-          <span style="font-size: 0.85rem; font-weight: 700;">Open App ➔</span>
-        </a>
+          <span style="font-size: 0.85rem; font-weight: 700;">Compose ➔</span>
+        </div>
 
         <a href="https://wa.me/917603812426" target="_blank" rel="noopener noreferrer" class="comm-action-btn comm-btn-whatsapp" onclick="closePhoneModal()">
           <div class="btn-label-group">
@@ -1045,7 +1452,7 @@
       <button class="modal-close-btn" onclick="closeDownloadTrackerModal()">✕</button>
 
       <div class="modal-header">
-        <h3><i class="fa-solid fa-download" style="color: #0a66c2;"></i> Download Full CV</h3>
+        <h3><i class="fa-solid fa-cloud-arrow-down" style="color: var(--primary-yellow);"></i> Download Full CV</h3>
         <p>Please enter your details to download Surya's resume.</p>
       </div>
 
@@ -1066,7 +1473,7 @@
         </div>
 
         <button type="submit" class="btn-submit-download" id="submitBtn">
-          <i class="fa-solid fa-file-arrow-down"></i> Continue to Download
+          <i class="fa-solid fa-cloud-arrow-down"></i> Continue to Download
         </button>
       </form>
     </div>
@@ -1170,6 +1577,9 @@
   </div>
 
   <script>
+    const tabNames = ['profile', 'summary', 'experience', 'skills', 'education', 'contact'];
+    let currentSlideIndex = 0;
+
     /* Direct Auto Email Handler */
     function handleAutoEmail(emailAddress) {
       const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
@@ -1181,10 +1591,8 @@
         const mailtoLink = `mailto:${emailAddress}`;
         const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}`;
 
-        // Trigger default desktop email client
         window.location.href = mailtoLink;
 
-        // Fallback: If page remains focused, open Gmail Web Composer
         const checkTime = Date.now();
         setTimeout(() => {
           if (Date.now() - checkTime < 1800 && document.hasFocus()) {
@@ -1218,6 +1626,20 @@
       document.getElementById('downloadTrackerModal').classList.remove('open');
     }
 
+    async function handleQuickDownload(event) {
+      event.preventDefault();
+      const email = document.getElementById('quickEmail').value;
+      const payload = {
+        name: 'Quick Subscriber',
+        contact: email,
+        organization: 'Direct Website Lead',
+        timestamp: new Date().toLocaleString(),
+        _subject: `New Quick Resume Download: ${email}`
+      };
+      await dispatchTelemetry(payload);
+      triggerPrintPDF();
+    }
+
     async function handleLeadSubmit(event) {
       event.preventDefault();
       const btn = document.getElementById('submitBtn');
@@ -1237,6 +1659,17 @@
         _subject: `New Resume Download Report: ${leadName}`
       };
 
+      await dispatchTelemetry(payload);
+
+      document.getElementById('downloadTrackerModal').classList.remove('open');
+      btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-down"></i> Continue to Download';
+      btn.disabled = false;
+      document.getElementById('cvLeadForm').reset();
+
+      triggerPrintPDF();
+    }
+
+    async function dispatchTelemetry(payload) {
       // 1. Local backup
       try {
         const existingDownloads = JSON.parse(localStorage.getItem('cv_downloads') || '[]');
@@ -1246,7 +1679,7 @@
         console.warn('LocalStorage unavailable.');
       }
 
-      // 2. Send to Formspree endpoint
+      // 2. Formspree API submission
       try {
         await fetch('https://formspree.io/f/xbgrbvej', {
           method: 'POST',
@@ -1258,49 +1691,83 @@
         });
       } catch (err) {
         console.log('Report logged locally.');
-      } finally {
-        document.getElementById('downloadTrackerModal').classList.remove('open');
-        btn.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i> Continue to Download';
-        btn.disabled = false;
-        document.getElementById('cvLeadForm').reset();
-
-        // Trigger print dialog
-        const defaultTitle = document.title;
-        document.title = "Surya_Resume_R&D";
-
-        setTimeout(() => {
-          window.print();
-          setTimeout(() => {
-            document.title = defaultTitle;
-          }, 1000);
-        }, 300);
       }
     }
 
-    /* Tab Switching Logic */
+    function triggerPrintPDF() {
+      const defaultTitle = document.title;
+      document.title = "Surya_Resume_R&D";
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.title = defaultTitle;
+        }, 1000);
+      }, 300);
+    }
+
+    /* Directional Animated Tab & Profile Switching Logic */
     function switchTab(tabName, triggerBtn) {
-      const panes = document.querySelectorAll('.tab-pane');
+      const newIndex = tabNames.indexOf(tabName);
+      const isForward = newIndex >= currentSlideIndex;
+
+      const panes = document.querySelectorAll('.editorial-pane');
       panes.forEach(pane => {
-        pane.classList.remove('active');
-        pane.style.display = 'none';
+        pane.classList.remove('active', 'slide-forward', 'slide-backward');
       });
 
-      const buttons = document.querySelectorAll('.tab-btn');
+      const buttons = document.querySelectorAll('.nav-link-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
 
       const activePane = document.getElementById('tab-' + tabName);
       if (activePane) {
-        activePane.style.display = 'block';
-        activePane.classList.add('active');
+        void activePane.offsetWidth;
+        activePane.classList.add('active', isForward ? 'slide-forward' : 'slide-backward');
       }
 
       if (!triggerBtn) {
-        triggerBtn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
+        triggerBtn = document.querySelector(`.nav-link-btn[data-tab="${tabName}"]`);
       }
 
       if (triggerBtn) {
         triggerBtn.classList.add('active');
       }
+
+      currentSlideIndex = newIndex === -1 ? 0 : newIndex;
+      updateSliderTrack();
+    }
+
+    function navigateSlide(direction) {
+      const targetIndex = (currentSlideIndex + direction + tabNames.length) % tabNames.length;
+      const tabName = tabNames[targetIndex];
+      const targetBtn = document.querySelector(`.nav-link-btn[data-tab="${tabName}"]`);
+      
+      const panes = document.querySelectorAll('.editorial-pane');
+      panes.forEach(pane => {
+        pane.classList.remove('active', 'slide-forward', 'slide-backward');
+      });
+
+      const buttons = document.querySelectorAll('.nav-link-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      const activePane = document.getElementById('tab-' + tabName);
+      if (activePane) {
+        void activePane.offsetWidth;
+        activePane.classList.add('active', direction > 0 ? 'slide-forward' : 'slide-backward');
+      }
+
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+      }
+
+      currentSlideIndex = targetIndex;
+      updateSliderTrack();
+    }
+
+    function updateSliderTrack() {
+      const progress = ((currentSlideIndex + 1) / tabNames.length) * 100;
+      document.getElementById('sliderProgressBar').style.width = `${progress}%`;
+      document.getElementById('slideIndexDisplay').innerText = `0${currentSlideIndex + 1}`;
     }
   </script>
 </body>
